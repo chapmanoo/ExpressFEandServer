@@ -1,0 +1,41 @@
+<html>
+
+<head>
+    <title>Film App</title>
+    <script src="index.js" type="module"></script>
+    <link rel="stylesheet" type="text/css" href="css/style-sheet.css">
+</head>
+
+<body>
+    <div id="filmData">
+        <h1>Film List</h1>
+        <input id="inputFilmTitle" type="text" placeholder="Enter a title">
+        <input id="inputFilmRunTime" type="Number" placeholder="Enter run time">
+        <input id="inputFilmRelease" type="Number" placeholder="Enter the release year">
+        <input id="cmdCreate" type="button" onclick="createAndAppendFilm()" value="Create">
+        <input id="cmdSave" type="button" onclick="saveChangesToFilm()" value="Save Changes">
+        <input id="cmdCancel" type="button" onclick="cancelEdit()" value="Cancel Edit">
+
+        <div id="loader"></div>
+        <div class="animate-bottom">
+            <table id="filmTable">
+                <h2>Films</h2>
+                <input id="cmdRefresh" type="button" onclick="reloadTable()" value="Refresh Table">
+                <br></br>
+                <table>
+                    <thead>
+                        <th>&nbsp;</th>
+                        <th>Title</th>
+                        <th>Run Time</th>
+                        <th>Release Year</th>
+                        <th>&nbsp;</th>
+                    </thead>
+                    <tbody id="filmDetails">
+                    </tbody>
+                </table>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
