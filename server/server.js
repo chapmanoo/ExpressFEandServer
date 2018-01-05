@@ -5,7 +5,7 @@ let app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(cors({origin:"*"}))
+app.use(cors({ origin: "*" }))
 app.get("/api/film", function (req, res) {
     res.send(films);
 });
@@ -22,7 +22,9 @@ app.get("/api/film/:id", function (req, res) {
 })
 
 app.post("/api/film/", function (req, res) {
+
     let newFilm = req.body;
+    console.log(newFilm);
     if (isValidFilm(newFilm)) {
         films.push(newFilm);
         res.send(newFilm);
@@ -35,18 +37,11 @@ function isValidFilm(film) {
             if (film.runTime != undefined) {
                 if (film.release != undefined) {
                     return true;
-                } else {
-                    return false;
                 }
-            } else {
-                return false;
             }
-        } else {
-            return false;
         }
-    } else {
-        return false;
     }
+    return false;
 }
 
 app.put("/api/film/:id", function (req, res) {
@@ -59,7 +54,7 @@ app.put("/api/film/:id", function (req, res) {
         currentFilm.name = newFilmDetails.name || currentFilm.name;
         currentFilm.runTime = newFilmDetails.runTime || currentFilm.runTime;
         currentFilm.release = newFilmDetails.release || currentFilm.release;
-        
+
         res.send(currentFilm);
     } else {
         res.sendStatus(500);
@@ -68,11 +63,11 @@ app.put("/api/film/:id", function (req, res) {
 
 });
 
-app.delete("/api/film/:id", function(req, res) {
+app.delete("/api/film/:id", function (req, res) {
     let filmID = req.params.id;
     let currentFilm = films.findIndex((film) => film.id == filmID);
 
-    if(currentFilm !== -1) {
+    if (currentFilm !== -1) {
         films.splice(currentFilm, 1);
         res.sendStatus(204);
     } else {
@@ -81,7 +76,7 @@ app.delete("/api/film/:id", function(req, res) {
 
 });
 
-app.listen(3000, function () {
+app.listen(3001, function () {
     console.log("This app is listening on port 3k!");
 });
 
